@@ -29,7 +29,7 @@ app.get("/update", async (req, res) => {
     const response = await axios.get('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson');
     const data = extractImportantData(response.data);
     const now = new Date();
-    if (now - data.time < 1000 * 60 * 10) {
+   // if (now - data.time < 1000 * 60 * 10) {
         if (data.magnitude > Number(process.env.LIMIT)) {
             bot.telegram.sendMessage(
                 process.env.USERNAME,
@@ -44,7 +44,7 @@ app.get("/update", async (req, res) => {
                 + "Stay Safe and Be Prepared! 🌏\n"
                 + "🚨 " + process.env.USERNAME, {parse_mode: "HTML"})
         }
-    }
+   // }
     return res.send("ok")
 })
 
